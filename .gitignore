@@ -1,0 +1,5 @@
+credentials.json
+testing/
+venv/
+.vscode/
+__pycache__/
