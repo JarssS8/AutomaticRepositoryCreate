@@ -3,7 +3,7 @@ from repository import RepoLocal
 from git import Repo
 import json, sys
 
-json_path = './credentials.json'
+json_path = '/home/jars/Programming/Python/GithubAPI/credentials.json'
 root_path_to_clone = "/home/jars/Programming/Autocreated/"
 
 try:
@@ -33,10 +33,13 @@ def get_clone_url(repoGithub):
     print('Cloned in path {} succesfully!'.format(path))
 
 if __name__ == "__main__":
+    
+
     description = ''
     private = ''
     try:
         name = str(sys.argv[1])
+        print(str(sys.argv[0]))
         if "-help"==name or "-h"==name:
             print('The structure is REPO_NAME FLAGS [DESCRIPTION]')
             print('If the REPO_NAME or the DESCRIPTION have more than ONE word should go between \" \"')
@@ -60,7 +63,10 @@ if __name__ == "__main__":
             private = None
 
         if "d" in flags:
-            description = str(sys.argv[3])
+            i = 3
+            while i < len(sys.argv):
+                description += "{} ".format(sys.argv[i])
+                i=i+1
         else:
             description = None
         if "-help"==flags or "-h"==flags:
@@ -69,8 +75,6 @@ if __name__ == "__main__":
         description = None
         if private == '':
             private = None
-
     repoLocal = RepoLocal(name = name, description = description, private = private)
     print('Repository Object created')
     create_repo_github(repoLocal)
-    
