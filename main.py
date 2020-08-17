@@ -45,7 +45,7 @@ if __name__ == "__main__":
             print('If the REPO_NAME or the DESCRIPTION have more than ONE word should go between \" \"')
             print('Order of the flags is indiferent and must start with \'-\'')
             print('Flags could be:\n  p for make it private, for default is public\n  d for add a description after the flags')
-            print('Example: \"Test name for the repo\" -dp \"This is the example for the description\"')
+            print('Example: TestName -dp \"This is the example for the description\"')
             exit()
         elif name.startswith('-'):
             print('ERROR: The name could not start with \"-\"')
