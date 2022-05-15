@@ -7,9 +7,11 @@ The structure is REPO_NAME FLAGS [DESCRIPTION]<br/><br/>
 If the REPO_NAME or the DESCRIPTION have more than ONE word should go between " "<br/>
 Order of the flags is indiferent and must start with '-'<br/><br/>
 Flags could be:<br/>
+    n to set a repository name (MANDATORY)
     p for make it private, for default is public<br/>
     d for add a description after the flags<br/>
-Example: TestName -dp "This is the example for the description"<br/>
+    r custom local path, by default ~/Programing/repo_name
+Example:python create.py -n DjangoApp -d "This is the example for the description" -p<br/>
 
 # 📂 Installation 📂
 
@@ -18,55 +20,14 @@ First of all you have to clone the project:<br/>
 git clone https://github.com/JarssS8/AutomaticRepositoryCreate.git
 ```
 
-I prefer use a Python virtual enviroment for make it more clean.<br/>
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install virtual enviroment.<br/>
-
-If you don't have it, you can download pasting this on a terminal:<br/>
-
-```bash
-pip install virtualenv
-```
-
-After that you can create your vitual enviroment with:<br/>
-```bash
-python3 -m venv venv
-```
-The last venv is the name of the virtual enviroment, you can choose other if you want.<br/>
-
-Then we have to access to the venv, for that we open a terminal in ours project folder and type:<br/>
-```bash
-source ./venv/bin/activate
-```
-Now we can see we are in the virtual enviroment because the first word in our terminas is (venv)<br/>
-
-For install all the dependencies on the venv we type:<br/>
+Install requirements from pip
 ```bash
 pip install -r requirements.txt
 ```
 
-The next step is create a JSON file with our Github credentials, something like this:<br/>
-```json
-{
-    "username" : "my_username", 
-    "password" : "my_password"
-}
-```
-** CHANGE THE PATHS IN MAIN.PY FOR YOUR REPOSITORIES FOLDER AND YOUR CREDENTIALS FILE**<br/>
-
-Now we have to write a bash script for can run the python script from console and after that opens Visual Studio Code with our folder:<br/>
-```bash
-#!/bin/bash
-
-source /home/jars/Programming/Python/GithubAPI/venv/bin/activate && python3 /home/jars/Programming/Python/GithubAPI/main.py $@ && deactivate
-code /home/jars/Programming/Autocreated/$1
-```
+You need to create a enviroment variable persistent (https://unix.stackexchange.com/questions/117467/how-to-permanently-set-environmental-variables) with the name GITHUB_TOKEN (https://github.com/settings/tokens)
 
 The last step is create an alias in our .bashrc with the path of our bash script:<br/>
 ```bash
-alias create='bash /home/jars/Programming/Python/GithubAPI/script.sh'
+alias create='python ~/repo_path/create.py'
 ```
-If you logout and login all should be ok. And now you can create your repositories using your console.<br/><br/>
-You can use the github credentials store for don't have to write your credentials everytime that you want create a new project, presonally I recommend this guide: https://www.shellhacks.com/git-config-username-password-store-credentials<br/>
-
-
-** CHANGE THE PATHS IN MAIN.PY FOR YOUR REPOSITORIES FOLDER AND YOUR CREDENTIALS FILE**
