@@ -86,7 +86,7 @@ def clone_repo(args, repo_name, url_to_clone):
     path = "{}{}".format(args.route, repo_name)
     os.system("mkdir -p {}".format(path))
     url_to_clone = url_to_clone.replace("https://", "")
-    command = 'git clone https://oauth2:{token}@{clone_url} "{path}"'.format(
+    command = 'git clone https://oauth2:{token}@{clone_url} {path}'.format(
         token=os.environ["GITHUB_TOKEN"], clone_url=url_to_clone, path=path
     )
     os.system(command)
